@@ -1,0 +1,20 @@
+import numpy as np
+
+x = np.array([300, 100, 200, 400])  
+p = np.array([0.2, 0.3, 0.1, 0.4])  
+
+E = np.sum(p * x)
+print(f"Величина сподіваних збитків  = {E:.2f}")
+
+MAD = np.sum(p * np.abs(x - E))
+print(f"Середнє абсолютне відхилення = {MAD:.2f}")
+
+sigma = np.sqrt(np.sum(p * (x - E) ** 2))
+CV = sigma / E
+print(f"Коефіцієнт варіації = {CV:.2f}")
+
+asymmetry = np.sum(p * (x - E) ** 3) / sigma**3
+print(f"Коефіцієнт асиметрії = {asymmetry:.2f}")
+
+Va = np.sqrt((6 * len(x) * (len(x) - 1)) / ((len(x) - 2) * (len(x) + 1) * (len(x) + 3)))
+print(f"Варіація асиметрії = {Va:.2f}")
