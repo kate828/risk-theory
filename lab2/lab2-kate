@@ -1,20 +1,30 @@
-import numpy as np
+import math
 
-x = np.array([300, 100, 200, 400])  
-p = np.array([0.2, 0.3, 0.1, 0.4])  
+def main():
+    losses1, losses2, losses3, losses4 = 300, 100, 200, 400
+    p1, p2, p3, p4 = 0.2, 0.3, 0.1, 0.4
 
-E = np.sum(p * x)
-print(f"Величина сподіваних збитків  = {E:.2f}")
+    wl1 = losses1 * p1
+    wl2 = losses2 * p2
+    wl3 = losses3 * p3
+    wl4 = losses4 * p4
 
-MAD = np.sum(p * np.abs(x - E))
-print(f"Середнє абсолютне відхилення = {MAD:.2f}")
+    wl = wl1 + wl2 + wl3 + wl4
 
-sigma = np.sqrt(np.sum(p * (x - E) ** 2))
-CV = sigma / E
-print(f"Коефіцієнт варіації = {CV:.2f}")
+    print(f"Очікувані збитки 1: {wl1}, Очікувані збитки 2: {wl2}, Очікувані збитки  3: {wl3}, Очікувані збитки  4: {wl4}, Загальна величина : {wl}")
 
-asymmetry = np.sum(p * (x - E) ** 3) / sigma**3
-print(f"Коефіцієнт асиметрії = {asymmetry:.2f}")
+    v1 = p1 * (wl1 - wl) ** 2
+    v2 = p2 * (wl2 - wl) ** 2
+    v3 = p3 * (wl3 - wl) ** 2
+    v4 = p4 * (wl4 - wl) ** 2
 
-Va = np.sqrt((6 * len(x) * (len(x) - 1)) / ((len(x) - 2) * (len(x) + 1) * (len(x) + 3)))
-print(f"Варіація асиметрії = {Va:.2f}")
+    v = v1 + v2 + v3 + v4
+
+    print(f"Варіація 1: {v1}, Варіація 2: {v2}, Варіація 3: {v3}, Варіація 4: {v4}, Загальна варіація: {v}")
+
+    s = math.sqrt(v)
+
+    print(f"Сиандартне відхилення: {s}")
+
+if __name__ == "__main__":
+    main()
