@@ -1,0 +1,23 @@
+import math
+
+def U(x):
+    return math.sqrt(x)
+
+x1, x2 = 1000, 3000  
+p1, p2 = 0.5, 0.5    
+
+EU = p1 * U(x1) + p2 * U(x2)
+
+DE = EU ** 2
+
+deterministic_salary = 2000
+
+print(f"Очікувана корисність : {EU:.4f}")
+print(f"Детермінований еквівалент: {DE:.2f} гр. од.")
+
+if DE > deterministic_salary:
+    print("Раціонально обрати перший випадок (ризикований варіант).")
+elif DE < deterministic_salary:
+    print("Раціонально обрати заробітню плату 2000 гр. од.")
+else:
+    print("Обидва варіанти еквівалентні за корисністю.")
